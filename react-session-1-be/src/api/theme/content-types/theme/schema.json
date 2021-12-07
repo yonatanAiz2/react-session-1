@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "themes",
+  "info": {
+    "singularName": "theme",
+    "pluralName": "themes",
+    "displayName": "theme"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "primary": {
+      "type": "string",
+      "regex": "^#(?:[0-9a-fA-F]{3}){1,2}$",
+      "required": true
+    },
+    "secondary": {
+      "type": "string",
+      "regex": "^#(?:[0-9a-fA-F]{3}){1,2}$",
+      "required": true
+    },
+    "background": {
+      "type": "string",
+      "regex": "^#(?:[0-9a-fA-F]{3}){1,2}$",
+      "required": true
+    },
+    "text": {
+      "type": "string",
+      "regex": "^#(?:[0-9a-fA-F]{3}){1,2}$",
+      "required": true
+    }
+  }
+}

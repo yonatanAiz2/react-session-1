@@ -1,5 +1,5 @@
 {
-  "name": "react-session-1-strapi",
+  "name": "react-session-1-be",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -20,7 +20,7 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "6cf10483-e9c4-44e0-8121-45d851d9641c"
+    "uuid": "fbbc15aa-f1c7-4a06-8f3b-fb396aeb1377"
   },
   "engines": {
     "node": ">=12.x.x <=16.x.x",
