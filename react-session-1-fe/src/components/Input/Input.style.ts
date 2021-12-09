@@ -5,8 +5,16 @@ export const InputContainer = styled.div`
   width: 100%;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{ hasIcon: boolean }>`
   width: 100%;
+  ${({ hasIcon }) =>
+    hasIcon
+      ? css`
+          padding: 0 48px 0 24px;
+        `
+      : css`
+          padding: 0 24px;
+        `}
   height: 40px;
   border-radius: 32px;
   font-size: 16px;
@@ -25,12 +33,3 @@ export const ErrorText = styled.small`
   color: red;
   margin-left: 10px;
 `;
-
-// ${({ hasIcon }) =>
-//     hasIcon
-//       ? css`
-//           padding: 0 48px 0 24px;
-//         `
-//       : css`
-//           padding: 0 24px;
-//         `}

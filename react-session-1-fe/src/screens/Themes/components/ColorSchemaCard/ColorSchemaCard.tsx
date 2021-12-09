@@ -1,25 +1,20 @@
+import Button from "../../../../components/Button/Button";
+import { colorsArr } from "../../../../utils/colors.constants";
 import * as S from "./ColorSchemeCard.style";
 
-const ColorSchemeCard = ({
-  id,
-  primary,
-  secondary,
-  text,
-  background,
-  title,
-}: Theme) => {
+const ColorSchemeCard = ({ id, title, ...colors }: Theme) => {
   return (
     <S.CardContainer role="card">
       <S.ColorsContainer>
-        {
-          // add colors here by map
-        }
+        {colorsArr.map((color) => (
+          <S.Color key={color} color={colors[color]} />
+        ))}
       </S.ColorsContainer>
       <S.CardFooter>
         <span>{title}</span>
-        {/* <Link to={`/themes/${id}`}>
+        <a href={`/themes/${id}`}>
           <Button colorType="secondary">Open</Button>
-        </Link> */}
+        </a>
       </S.CardFooter>
     </S.CardContainer>
   );

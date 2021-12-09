@@ -13,7 +13,7 @@ const Navbar = () => {
           </li>
           <li>
             <Link to="/create-theme">
-              {/* <Button colorType="primary">Create theme</Button> */}
+              <Button colorType="primary">Create theme</Button>
             </Link>
           </li>
         </ul>

@@ -1,8 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
 const primary = css`
-  /* background-color: ${({ theme }) => theme.primary}; */
-  background-color: blueviolet;
+  background-color: ${({ theme }) => theme.primary};
   border-style: none;
   color: #ffffff;
   transition: opacity 100ms;
@@ -14,8 +13,8 @@ const primary = css`
 
 const secondary = css`
   background-color: transparent;
-  border: 1px solid blueviolet;
-  color: blueviolet;
+  border: 1px solid ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.primary};
   transition: all 100ms;
   :hover,
   :focus {
@@ -29,7 +28,8 @@ const buttonColorTypes = {
   secondary,
 };
 
-export const Button = styled.button`
+export const Button = styled.button<{ colorType: "primary" | "secondary" }>`
+  ${({ colorType }) => buttonColorTypes[colorType]}
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
