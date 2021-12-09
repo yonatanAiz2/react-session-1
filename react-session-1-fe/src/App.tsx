@@ -1,7 +1,16 @@
-import { Spinner } from "./components/Spinner/Spinner";
+import Layout from "./components/Layout/Layout";
+import Themes from "./screens/Themes/Themes";
+import { GlobalStyle } from "./style/GlobalStyle.style";
 
 function App() {
-  return <Spinner />;
+  return (
+    <>
+      <GlobalStyle />
+      <Layout>
+        <Themes />
+      </Layout>
+    </>
+  );
 }
 
 export default App;
