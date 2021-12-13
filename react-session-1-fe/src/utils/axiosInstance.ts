@@ -6,6 +6,14 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   function (config) {
+    const token = sessionStorage.getItem("token");
+
+    if (token) {
+      config.headers = {
+        Authorization: `bearer ${token}`,
+      };
+    }
+
     return config;
   },
   function (error) {
@@ -18,12 +26,6 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   function (error) {
-    const errorMsg = error?.response?.data?.error?.message;
-
-    if (errorMsg) {
-      alert(errorMsg);
-    }
-
     return Promise.reject(error);
   }
 );
