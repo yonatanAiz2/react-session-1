@@ -11,8 +11,9 @@ interface Theme extends Colors {
 }
 
 interface ThemeAttributes extends Omit<Theme, "id"> {
-  createdAt: Date;
-  publishedAt: Date;
+  createdAt: Date | string;
+  publishedAt: Date | string;
+  updatedAt: Date | string;
 }
 
 interface ThemeEntity {
