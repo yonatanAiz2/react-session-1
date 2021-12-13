@@ -6,6 +6,7 @@ import store, { persistor } from "./store";
 import App from "./App";
 import { Spinner } from "./components/Spinner/Spinner";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const client = new QueryClient();
 
@@ -15,6 +16,7 @@ ReactDOM.render(
       <Provider store={store}>
         <PersistGate loading={<Spinner />} persistor={persistor}>
           <App />
+          <ReactQueryDevtools />
         </PersistGate>
       </Provider>
     </QueryClientProvider>

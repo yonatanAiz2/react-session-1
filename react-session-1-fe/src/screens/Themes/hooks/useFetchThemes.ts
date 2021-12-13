@@ -1,30 +1,15 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "react-query";
 import axiosInstance from "../../../utils/axiosInstance";
 
 export const useFetchThemes = () => {
-  const [status, setStatus] = useState<StateStatus>("idle");
-  const [themes, setThemes] = useState<Theme[]>([]);
-
   const getThemes = async () => {
-    setStatus("loading");
-    try {
-      const { data } = await axiosInstance.get<{ data: ThemeEntity[] }>(
-        "themes"
-      );
-      const fetchedThemes: Theme[] = data.data.map((theme) => ({
-        id: theme.id,
-        ...theme.attributes,
-      }));
+    const { data } = await axiosInstance.get<{ data: ThemeEntity[] }>("themes");
 
-      setThemes(fetchedThemes);
-      setStatus("success");
-    } catch (e) {
-      setStatus("rejected");
-    }
+    return data.data.map((theme) => ({
+      id: theme.id,
+      ...theme.attributes,
+    })) as Theme[];
   };
-  useEffect(() => {
-    getThemes();
-  }, []);
 
-  return { themes, status };
+  return useQuery("themes", getThemes);
 };

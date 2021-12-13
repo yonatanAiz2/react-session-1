@@ -6,9 +6,51 @@ import { Input } from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import axiosInstance from "../../utils/axiosInstance";
 import { useHistory } from "react-router-dom";
+import { useMutation, useQueryClient } from "react-query";
+
+const useSubmitTheme = () => {
+  const history = useHistory();
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation(
+    "add-theme",
+    async ({ title, ...colors }: Omit<Theme, "id">) => {
+      const { data } = await axiosInstance.post<{ data: ThemeEntity }>(
+        "themes",
+        {
+          data: {
+            title,
+            ...colors,
+          },
+        }
+      );
+
+      return data.data;
+    },
+    {
+      onSuccess: (response) => {
+        const themes = (queryClient.getQueryData("themes") as Theme[]) || [];
+        queryClient.setQueryData("themes", [
+          ...themes,
+          {
+            id: response.id,
+            ...response.attributes,
+          },
+        ]);
+
+        history.push("/");
+      },
+
+      onError: (error) => {
+        console.log(error);
+      },
+    }
+  );
+
+  return mutate;
+};
 
 const AddTheme = () => {
-  const history = useHistory();
   const [themeName, setThemeName] = useState("");
   const [colorsState, setColorsState] = useState<Colors>({
     background: "#fff",
@@ -16,25 +58,13 @@ const AddTheme = () => {
     secondary: "#fff",
     primary: "#fff",
   });
+  const handleSubmit = useSubmitTheme();
 
   const handleColorChange = (color: string, colorType: string) => {
     setColorsState((prev) => ({
       ...prev,
       [colorType]: color,
     }));
-  };
-
-  const handleSubmit = async () => {
-    try {
-      await axiosInstance.post("themes", {
-        data: {
-          title: themeName,
-          ...colorsState,
-        },
-      });
-      console.log("success");
-      history.push("/");
-    } catch (e) {}
   };
 
   return (
@@ -66,7 +96,11 @@ const AddTheme = () => {
           </div>
         ))}
       </S.ColorsContainer>
-      <Button onClick={handleSubmit}>Submit</Button>
+      <Button
+        onClick={() => handleSubmit({ ...colorsState, title: themeName })}
+      >
+        Submit
+      </Button>
     </div>
   );
 };

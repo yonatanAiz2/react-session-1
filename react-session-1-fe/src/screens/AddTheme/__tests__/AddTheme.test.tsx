@@ -3,6 +3,7 @@ import { rest } from "msw";
 import { render, screen, waitFor } from "@testing-library/react";
 import AddTheme from "../AddTheme";
 import userEvent from "@testing-library/user-event";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const addThemeMockFn = jest.fn();
 
@@ -17,7 +18,7 @@ jest.mock("react-router-dom", () => ({
 const mockServer = setupServer(
   rest.post("http://localhost/api/themes", (req, res, ctx) => {
     addThemeMockFn(req.body);
-    return res(ctx.status(204));
+    return res(ctx.status(204), ctx.json({ data: {} }));
   })
 );
 
@@ -31,9 +32,11 @@ afterAll(() => {
 
 describe("add theme", () => {
   it("Should be able to edit form and submit response", async () => {
-    const consoleMock = jest.spyOn(console, "log").mockImplementation(() => {});
-
-    render(<AddTheme />);
+    render(
+      <QueryClientProvider client={new QueryClient()}>
+        <AddTheme />
+      </QueryClientProvider>
+    );
     const input = screen.getByLabelText(/theme name/i);
     userEvent.type(input, "my new theme");
 
@@ -56,7 +59,5 @@ describe("add theme", () => {
         },
       }
     `);
-
-    expect(consoleMock).toBeCalledWith("success");
   });
 });

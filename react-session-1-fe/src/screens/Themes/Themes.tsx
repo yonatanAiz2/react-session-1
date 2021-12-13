@@ -8,8 +8,8 @@ import { useFilterThemes } from "./hooks/useFilterThemes";
 import * as S from "./Themes.style";
 
 const Themes = () => {
-  const { status, themes } = useFetchThemes();
-  const { filteredThemes, onFiltersChange } = useFilterThemes(themes);
+  const { status, data } = useFetchThemes();
+  const { filteredThemes, onFiltersChange } = useFilterThemes(data || []);
   const { id } = useParams<{ id: string }>();
 
   const isSideBarOpened = !!id;
@@ -18,7 +18,7 @@ const Themes = () => {
     return <Spinner />;
   }
 
-  if (!themes.length) {
+  if (!data?.length) {
     return <h2>no themes yet</h2>;
   }
 
