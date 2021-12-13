@@ -3,6 +3,7 @@ import { Form, Formik } from "formik";
 import * as S from "./Register.style";
 import { FormikSubmitButton } from "../../components/Button/Button";
 import { FormikInput } from "../../components/Input/Input";
+import { useAuthContext } from "../../context/AuthContext/AuthContext";
 
 interface RegisterPayloadWithRePassword extends RegisterPayload {
   rePassword: string;
@@ -26,6 +27,8 @@ const validationSchema = () =>
   });
 
 const Register = () => {
+  const { register } = useAuthContext();
+
   return (
     <S.Container>
       <h1>Register</h1>
@@ -33,7 +36,7 @@ const Register = () => {
         validateOnMount
         validationSchema={validationSchema}
         initialValues={initialState}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={register}
       >
         <Form>
           <FormikInput placeholder="username" name="username" />
