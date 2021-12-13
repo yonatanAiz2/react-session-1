@@ -34,6 +34,7 @@ const Filters = ({ onFiltersChange }: Props) => {
 
   return (
     <S.InputContainer>
+      {/* example with useRef */}
       <SearchInput
         placeholder="search for theme"
         value={state.search}
