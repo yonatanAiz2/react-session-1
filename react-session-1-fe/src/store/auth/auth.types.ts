@@ -24,7 +24,7 @@ export interface registerRequestAction {
 
 export interface registerRequestSuccess {
   type: "REGISTER_SUCCESS";
-  payload: User;
+  payload: AuthResponse;
 }
 
 export interface registerRequestFailure {

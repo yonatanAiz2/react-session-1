@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "../store";
 
 const axiosInstance = axios.create({
   baseURL: "/api/",
@@ -6,7 +7,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   function (config) {
-    const token = sessionStorage.getItem("token");
+    const { token } = store.getState().auth;
 
     if (token) {
       config.headers = {

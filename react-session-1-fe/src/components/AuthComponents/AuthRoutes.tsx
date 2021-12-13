@@ -1,11 +1,13 @@
+import { useSelector } from "react-redux";
 import { RouteProps, Route, Redirect } from "react-router-dom";
-import { useAuthContext } from "../../context/AuthContext/AuthContext";
+import { authStateSelector } from "../../store/auth/auth.selectors";
 import { Spinner } from "../Spinner/Spinner";
 
 export const ProtectedRoute = (props: RouteProps) => {
-  const { isAuthenticated, authenticatingStatus } = useAuthContext();
+  const { isAuthenticated, authenticatingStatus } =
+    useSelector(authStateSelector);
 
-  if (authenticatingStatus === "idle" || authenticatingStatus === "loading") {
+  if (authenticatingStatus === "loading") {
     return <Spinner />;
   }
 
@@ -17,9 +19,10 @@ export const ProtectedRoute = (props: RouteProps) => {
 };
 
 export const AuthRoute = (props: RouteProps) => {
-  const { isAuthenticated, authenticatingStatus } = useAuthContext();
+  const { isAuthenticated, authenticatingStatus } =
+    useSelector(authStateSelector);
 
-  if (authenticatingStatus === "idle" || authenticatingStatus === "loading") {
+  if (authenticatingStatus === "loading") {
     return <Spinner />;
   }
 

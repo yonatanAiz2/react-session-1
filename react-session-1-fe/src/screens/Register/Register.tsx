@@ -3,7 +3,14 @@ import { Form, Formik } from "formik";
 import * as S from "./Register.style";
 import { FormikSubmitButton } from "../../components/Button/Button";
 import { FormikInput } from "../../components/Input/Input";
-import { useAuthContext } from "../../context/AuthContext/AuthContext";
+import { useDispatch } from "react-redux";
+import axiosInstance from "../../utils/axiosInstance";
+import {
+  registerFailure,
+  registerRequest,
+  registerSuccess,
+} from "../../store/auth/auth.actions";
+import { useHistory } from "react-router-dom";
 
 interface RegisterPayloadWithRePassword extends RegisterPayload {
   rePassword: string;
@@ -27,8 +34,22 @@ const validationSchema = () =>
   });
 
 const Register = () => {
-  const { register } = useAuthContext();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
+  const register = async (user: RegisterPayload) => {
+    dispatch(registerRequest());
+    try {
+      const { data } = await axiosInstance.post<AuthResponse>(
+        "/auth/local/register",
+        user
+      );
+      dispatch(registerSuccess(data));
+      history.replace("/");
+    } catch (e) {
+      dispatch(registerFailure());
+    }
+  };
   return (
     <S.Container>
       <h1>Register</h1>

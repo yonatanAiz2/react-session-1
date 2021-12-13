@@ -1,10 +1,12 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../../../context/AuthContext/AuthContext";
+import { authStateSelector } from "../../../store/auth/auth.selectors";
 import Button from "../../Button/Button";
 import * as S from "./Navbar.style";
 
 const Navbar = () => {
-  const { isAuthenticated, user } = useAuthContext();
+  const { isAuthenticated, user } = useSelector(authStateSelector);
+
   return (
     <S.Navbar>
       <img src="/assets/logo.png" alt="logo" />

@@ -3,7 +3,14 @@ import { Form, Formik } from "formik";
 import * as S from "./Login.style";
 import { FormikSubmitButton } from "../../components/Button/Button";
 import { FormikInput } from "../../components/Input/Input";
-import { useAuthContext } from "../../context/AuthContext/AuthContext";
+import { useDispatch } from "react-redux";
+import {
+  loginFailure,
+  loginRequest,
+  loginSuccess,
+} from "../../store/auth/auth.actions";
+import axiosInstance from "../../utils/axiosInstance";
+import { useHistory } from "react-router-dom";
 
 const validationSchema = () =>
   Yup.object({
@@ -14,7 +21,22 @@ const validationSchema = () =>
 const initialState: LoginPayload = { identifier: "", password: "" };
 
 const Login = () => {
-  const { login } = useAuthContext();
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const login = async (auth: LoginPayload) => {
+    dispatch(loginRequest());
+    try {
+      const { data } = await axiosInstance.post<AuthResponse>(
+        "/auth/local",
+        auth
+      );
+      dispatch(loginSuccess(data));
+      history.push("/");
+    } catch (e) {
+      dispatch(loginFailure());
+    }
+  };
 
   return (
     <S.Container>
