@@ -9,17 +9,17 @@ const Navbar = () => {
       <S.LinksContainer>
         <ul>
           <li>
-            <Link to="/">main</Link>
+            <a href="/">main</a>
           </li>
           <li>
-            <Link to="/create-theme">
+            <a href="/create-theme">
               {/* <Button colorType="primary">Create theme</Button> */}
-            </Link>
+            </a>
           </li>
         </ul>
-        <Link to="/profile">
+        <a href="/profile">
           <S.Profile>?</S.Profile>
-        </Link>
+        </a>
       </S.LinksContainer>
     </S.Navbar>
   );
