@@ -16,6 +16,6 @@ export const useFilterThemes = (themes: Theme[]) => {
     return themes;
   };
 
-  const filteredThemes = filterThemes();
+  const filteredThemes = filterThemes(); // show example with memo
   return { filteredThemes, onFiltersChange };
 };
