@@ -30,8 +30,7 @@ export const Profile = styled.div`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  /* background-color: ${({ theme }) => theme.secondary}; */
-  background-color: orangered;
+  background-color: ${({ theme }) => theme.secondary};
   display: flex;
   align-items: center;
   justify-content: center;

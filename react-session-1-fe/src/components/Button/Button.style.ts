@@ -1,8 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
 const primary = css`
-  /* background-color: ${({ theme }) => theme.primary}; */
-  background-color: blueviolet;
+  background-color: ${({ theme }) => theme.primary};
   border-style: none;
   color: #ffffff;
   transition: opacity 100ms;
@@ -14,15 +13,12 @@ const primary = css`
 
 const secondary = css`
   background-color: transparent;
-  /* border: 1px solid ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.primary}; */
-  border: 1px solid blueviolet;
-  color: blueviolet;
+  border: 1px solid ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.primary};
   transition: all 100ms;
   :hover,
   :focus {
-    /* background-color: ${({ theme }) => theme.primary}; */
-    background-color: blueviolet;
+    background-color: ${({ theme }) => theme.primary};
     color: white;
   }
 `;

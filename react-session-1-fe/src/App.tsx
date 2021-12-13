@@ -12,29 +12,28 @@ const Profile = lazy(() => import("./screens/Profile/Profile"));
 const Themes = lazy(() => import("./screens/Themes/Themes"));
 const AddTheme = lazy(() => import("./screens/AddTheme/AddTheme"));
 
-const initialTheme: Colors = {
-  primary: "blueviolet",
-  secondary: "orangered",
-  text: "#333",
-  background: "#eee",
-};
-
 function App() {
   return (
     <BrowserRouter>
-      <GlobalStyle />
-      <Layout>
-        <Suspense fallback={<Spinner />}>
-          <Switch>
-            <Route path="/" exact component={Themes} />
-            <Route path="/themes/:id" component={Themes} />
-            <Route path="/add-theme" component={AddTheme} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/profile" component={Profile} />
-          </Switch>
-        </Suspense>
-      </Layout>
+      <AppThemeProvider>
+        {(theme) => (
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <Layout>
+              <Suspense fallback={<Spinner />}>
+                <Switch>
+                  <Route path="/" exact component={Themes} />
+                  <Route path="/themes/:id" component={Themes} />
+                  <Route path="/add-theme" component={AddTheme} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/register" component={Register} />
+                  <Route path="/profile" component={Profile} />
+                </Switch>
+              </Suspense>
+            </Layout>
+          </ThemeProvider>
+        )}
+      </AppThemeProvider>
     </BrowserRouter>
   );
 }

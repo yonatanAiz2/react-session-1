@@ -243,11 +243,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    background-color: #eee;
-    color: #333;
-    
+    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
   }
 `;
-
-/* background-color: ${({ theme }) => theme.background}; */
-/* color: ${({ theme }) => theme.text}; */

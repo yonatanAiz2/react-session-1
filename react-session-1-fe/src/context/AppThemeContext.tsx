@@ -30,7 +30,7 @@ const AppThemeContextProvider = ({ children }: ContextProps) => {
 
   return (
     <AppThemeContext.Provider value={{ theme, updateTheme, resetTheme }}>
-      {children}
+      {children(theme)}
     </AppThemeContext.Provider>
   );
 };
