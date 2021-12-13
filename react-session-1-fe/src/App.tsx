@@ -30,10 +30,10 @@ function App() {
                   <Switch>
                     <Route path="/" exact component={Themes} />
                     <Route path="/themes/:id" component={Themes} />
-                    <Route path="/add-theme" component={AddTheme} />
-                    <Route path="/profile" component={Profile} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
+                    <ProtectedRoute path="/add-theme" component={AddTheme} />
+                    <ProtectedRoute path="/profile" component={Profile} />
+                    <AuthRoute path="/login" component={Login} />
+                    <AuthRoute path="/register" component={Register} />
                   </Switch>
                 </Suspense>
               </Layout>

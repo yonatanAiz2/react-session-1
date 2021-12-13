@@ -4,7 +4,7 @@ import Button from "../../Button/Button";
 import * as S from "./Navbar.style";
 
 const Navbar = () => {
-  const { isAuthenticated } = useAuthContext();
+  const { isAuthenticated, user } = useAuthContext();
   return (
     <S.Navbar>
       <img src="/assets/logo.png" alt="logo" />
@@ -31,7 +31,9 @@ const Navbar = () => {
           )}
         </ul>
         <Link to="/profile">
-          <S.Profile>Y</S.Profile>
+          <S.Profile>
+            {user?.username ? user.username[0].toUpperCase() : "?"}
+          </S.Profile>
         </Link>
       </S.LinksContainer>
     </S.Navbar>

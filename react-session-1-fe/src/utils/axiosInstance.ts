@@ -26,6 +26,11 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   function (error) {
+    const errorMsg = error?.response?.data?.error?.message;
+
+    if (errorMsg) {
+      alert(errorMsg);
+    }
     return Promise.reject(error);
   }
 );
