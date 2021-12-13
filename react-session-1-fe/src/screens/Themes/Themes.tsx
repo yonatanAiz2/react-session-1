@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { Spinner } from "../../components/Spinner/Spinner";
 import ColorSchemeCard from "./components/ColorSchemaCard/ColorSchemaCard";
 import ThemeSideBar from "./components/ThemeSideBar/ThemeSideBar";
@@ -6,7 +7,8 @@ import * as S from "./Themes.style";
 
 const Themes = () => {
   const { status, themes } = useFetchThemes();
-  const isSideBarOpened = false;
+  const { id } = useParams<{ id: string }>();
+  const isSideBarOpened = !!id;
   if (status === "idle" || status === "loading") {
     return <Spinner />;
   }
@@ -24,7 +26,9 @@ const Themes = () => {
           ))}
         </S.ThemesContainer>
       </S.MainContainer>
-      <ThemeSideBar />
+      <ThemeSideBar
+        selectedTheme={themes.find((theme) => theme.id === Number(id))}
+      />
     </>
   );
 };

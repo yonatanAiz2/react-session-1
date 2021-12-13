@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../../../../components/Button/Button";
 import { colorsArr } from "../../../../utils/colors.constants";
 import * as S from "./ColorSchemeCard.style";
@@ -12,9 +13,9 @@ const ColorSchemeCard = ({ id, title, ...colors }: Theme) => {
       </S.ColorsContainer>
       <S.CardFooter>
         <span>{title}</span>
-        <a href={`/themes/${id}`}>
+        <Link to={`/themes/${id}`}>
           <Button colorType="secondary">Open</Button>
-        </a>
+        </Link>
       </S.CardFooter>
     </S.CardContainer>
   );

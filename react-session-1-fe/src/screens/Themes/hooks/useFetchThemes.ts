@@ -1,5 +1,6 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
+import axios from "axios";
+import axiosInstance from "../../../utils/axiosInstance";
 import { themesMock } from "../../../utils/test-utils/mocks/themes";
 
 export const useFetchThemes = () => {
@@ -9,7 +10,7 @@ export const useFetchThemes = () => {
   const getThemes = async () => {
     setStatus("loading");
     try {
-      const { data } = { data: themesMock }; // will be API call;
+      const { data } = { data: themesMock }; // will be API call; http://localhost:1337/api/themes
       const fetchedThemes: Theme[] = data.map((theme) => ({
         id: theme.id,
         ...theme.attributes,

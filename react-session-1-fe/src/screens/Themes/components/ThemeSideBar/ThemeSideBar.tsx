@@ -76,8 +76,8 @@ const ThemeSideBar = ({ selectedTheme }: Props) => {
         <>
           <SideBarHeader selectedTheme={selectedTheme} />
           <h2>{selectedTheme?.title}</h2>
-          {/* <SideBarLinks themeId={selectedTheme.id} />
-          <SideBarRoutes selectedTheme={selectedTheme} /> */}
+          <SideBarLinks themeId={selectedTheme.id} />
+          <SideBarRoutes selectedTheme={selectedTheme} />
         </>
       )}
     </S.SideBar>
