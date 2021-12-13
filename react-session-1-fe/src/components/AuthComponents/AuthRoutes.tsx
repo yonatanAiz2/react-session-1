@@ -18,7 +18,6 @@ export const ProtectedRoute = (props: RouteProps) => {
 
 export const AuthRoute = (props: RouteProps) => {
   const { isAuthenticated, authenticatingStatus } = useAuthContext();
-
   if (authenticatingStatus === "idle" || authenticatingStatus === "loading") {
     return <Spinner />;
   }
