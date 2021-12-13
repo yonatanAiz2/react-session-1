@@ -1,3 +1,5 @@
+import { rootReducer } from "../store/reducer.root";
+
 declare global {
-  type RootState = null;
+  type RootState = ReturnType<typeof rootReducer>;
 }

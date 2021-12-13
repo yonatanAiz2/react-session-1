@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "styled-components/macro";
 import AppThemeProvider from "./context/AppThemeContext";
 import { Spinner } from "./components/Spinner/Spinner";
-import AuthContextProvider from "./context/AuthContext/AuthContext";
 import {
   AuthRoute,
   ProtectedRoute,
@@ -21,29 +20,32 @@ const AddTheme = lazy(() => import("./screens/AddTheme/AddTheme"));
 function App() {
   return (
     <BrowserRouter>
-      <AuthContextProvider>
-        <AppThemeProvider>
-          {(theme) => (
-            <ThemeProvider theme={theme}>
-              <GlobalStyle />
-              <Layout>
-                <Suspense fallback={<Spinner />}>
-                  <Switch>
-                    <Route path="/" exact component={Themes} />
-                    <Route path="/themes/:id" component={Themes} />
-                    <ProtectedRoute path="/add-theme" component={AddTheme} />
-                    <ErrorBoundary>
-                      <ProtectedRoute path="/profile" component={Profile} />
-                    </ErrorBoundary>
-                    <AuthRoute path="/login" component={Login} />
-                    <AuthRoute path="/register" component={Register} />
-                  </Switch>
-                </Suspense>
-              </Layout>
-            </ThemeProvider>
-          )}
-        </AppThemeProvider>
-      </AuthContextProvider>
+      <AppThemeProvider>
+        {(theme) => (
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <Layout>
+              <Suspense fallback={<Spinner />}>
+                <Switch>
+                  <Route path="/" exact component={Themes} />
+                  <Route path="/themes/:id" component={Themes} />
+                  <ProtectedRoute path="/add-theme" component={AddTheme} />
+                  <ProtectedRoute
+                    path="/profile"
+                    component={() => (
+                      <ErrorBoundary>
+                        <Profile />
+                      </ErrorBoundary>
+                    )}
+                  />
+                  <AuthRoute path="/login" component={Login} />
+                  <AuthRoute path="/register" component={Register} />
+                </Switch>
+              </Suspense>
+            </Layout>
+          </ThemeProvider>
+        )}
+      </AppThemeProvider>
     </BrowserRouter>
   );
 }
