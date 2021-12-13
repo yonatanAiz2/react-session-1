@@ -10,6 +10,7 @@ import {
   AuthRoute,
   ProtectedRoute,
 } from "./components/AuthComponents/AuthRoutes";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 const Login = lazy(() => import("./screens/Login/Login"));
 const Register = lazy(() => import("./screens/Register/Register"));
@@ -31,7 +32,9 @@ function App() {
                     <Route path="/" exact component={Themes} />
                     <Route path="/themes/:id" component={Themes} />
                     <ProtectedRoute path="/add-theme" component={AddTheme} />
-                    <ProtectedRoute path="/profile" component={Profile} />
+                    <ErrorBoundary>
+                      <ProtectedRoute path="/profile" component={Profile} />
+                    </ErrorBoundary>
                     <AuthRoute path="/login" component={Login} />
                     <AuthRoute path="/register" component={Register} />
                   </Switch>
