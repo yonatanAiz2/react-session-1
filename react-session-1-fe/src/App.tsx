@@ -32,9 +32,14 @@ function App() {
                     <Route path="/" exact component={Themes} />
                     <Route path="/themes/:id" component={Themes} />
                     <ProtectedRoute path="/add-theme" component={AddTheme} />
-                    <ErrorBoundary>
-                      <ProtectedRoute path="/profile" component={Profile} />
-                    </ErrorBoundary>
+                    <ProtectedRoute
+                      path="/profile"
+                      component={() => (
+                        <ErrorBoundary>
+                          <Profile />
+                        </ErrorBoundary>
+                      )}
+                    />
                     <AuthRoute path="/login" component={Login} />
                     <AuthRoute path="/register" component={Register} />
                   </Switch>
