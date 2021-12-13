@@ -6,6 +6,15 @@ import Register from "./screens/Register/Register";
 import Profile from "./screens/Profile/Profile";
 import { GlobalStyle } from "./style/GlobalStyle.style";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { ThemeProvider } from "styled-components/macro";
+import AppThemeProvider from "./context/AppThemeContext";
+
+const initialTheme: Colors = {
+  primary: "blueviolet",
+  secondary: "orangered",
+  text: "#333",
+  background: "#eee",
+};
 
 function App() {
   return (

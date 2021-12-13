@@ -1,7 +1,7 @@
 import * as S from "./ThemeSideBar.style";
 import { Link, Route, Switch } from "react-router-dom";
 import Button from "../../../../components/Button/Button";
-// import { useThemeContext } from "../../../../context/ThemeContext";
+import { useAppThemeContext } from "../../../../context/AppThemeContext";
 import { colorsArr } from "../../../../utils/colors.constants";
 
 interface Props {
@@ -42,12 +42,16 @@ const SideBarLinks = ({ themeId }: { themeId: number }) => (
 );
 
 const SideBarHeader = ({ selectedTheme }: Props) => {
-  // const { updateTheme, resetTheme } = useThemeContext();
+  const { updateTheme, resetTheme } = useAppThemeContext();
   return (
     <S.HeaderButtons>
       <div>
-        <Button>save</Button>
-        <Button colorType="secondary">Reset</Button>
+        <Button onClick={() => selectedTheme && updateTheme(selectedTheme)}>
+          save
+        </Button>
+        <Button colorType="secondary" onClick={resetTheme}>
+          Reset
+        </Button>
       </div>
       <Link to="/">X</Link>
     </S.HeaderButtons>
