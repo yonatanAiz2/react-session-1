@@ -1,4 +1,4 @@
-// import { a } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "../../Button/Button";
 import * as S from "./Navbar.style";
 
@@ -9,17 +9,17 @@ const Navbar = () => {
       <S.LinksContainer>
         <ul>
           <li>
-            <a href="/">main</a>
+            <Link to="/">main</Link>
           </li>
           <li>
-            <a href="/create-theme">
+            <Link to="/create-theme">
               <Button colorType="primary">Create theme</Button>
-            </a>
+            </Link>
           </li>
         </ul>
-        <a href="/profile">
+        <Link to="/profile">
           <S.Profile>?</S.Profile>
-        </a>
+        </Link>
       </S.LinksContainer>
     </S.Navbar>
   );
