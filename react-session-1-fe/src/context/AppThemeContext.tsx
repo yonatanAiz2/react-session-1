@@ -14,7 +14,7 @@ interface Props {
 }
 
 interface ContextProps {
-  children: (theme: Colors) => React.ReactNode | React.ReactNode;
+  children: ((theme: Colors) => React.ReactNode) | React.ReactNode;
 }
 
 const AppThemeContext = createContext<Props>({} as Props);
