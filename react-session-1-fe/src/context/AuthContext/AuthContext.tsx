@@ -44,11 +44,10 @@ const reducer = (state: AuthState, action: Actions): AuthState => {
 };
 
 const AuthContextProvider: React.FC = ({ children }) => {
-  const history = useHistory();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const onAuthSuccess = (authResponse: AuthResponse) => {
-    history.push("/");
+    // redirect me to the main page please
     sessionStorage.setItem("token", authResponse.jwt);
     sessionStorage.setItem("user", JSON.stringify(authResponse.user));
   };
