@@ -30,8 +30,10 @@ function App() {
                   <Switch>
                     <Route path="/" exact component={Themes} />
                     <Route path="/themes/:id" component={Themes} />
+                    {/* HIDE if not authenticated! */}
                     <Route path="/add-theme" component={AddTheme} />
                     <Route path="/profile" component={Profile} />
+                    {/* HIDE if authenticated! */}
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                   </Switch>
