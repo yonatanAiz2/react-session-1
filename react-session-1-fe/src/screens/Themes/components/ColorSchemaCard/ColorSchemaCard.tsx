@@ -18,7 +18,7 @@ const ColorSchemeCard = ({ id, title, ...colors }: Theme) => {
       <S.CardFooter>
         <span>{title}</span>
         <Link to={`/themes/${id}`}>
-          <Button colorType="secondary">Open</Button>
+          <Button variant="secondary">Open</Button>
         </Link>
       </S.CardFooter>
     </S.CardContainer>

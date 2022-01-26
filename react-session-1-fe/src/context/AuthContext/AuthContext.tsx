@@ -8,12 +8,12 @@ interface Props extends AuthState {
   register: (user: RegisterPayload) => void;
 }
 
-const initialState: AuthState = {
+const initialAuthState: AuthState = {
   isAuthenticated: false,
   authenticatingStatus: "idle",
 };
 
-const AuthContext = createContext<Props>({ ...initialState } as Props);
+const AuthContext = createContext<Props>({ ...initialAuthState } as Props);
 
 const reducer = (state: AuthState, action: Actions): AuthState => {
   switch (action.type) {
@@ -35,15 +35,17 @@ const reducer = (state: AuthState, action: Actions): AuthState => {
       return {
         ...state,
         authenticatingStatus: "rejected",
-        user: undefined,
-        isAuthenticated: false,
       };
+
     default:
       return state;
   }
 };
 
-const AuthContextProvider: React.FC = ({ children }) => {
+const AuthContextProvider: React.FC<{ initialState?: AuthState }> = ({
+  children,
+  initialState = initialAuthState,
+}) => {
   const history = useHistory();
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -79,6 +81,10 @@ const AuthContextProvider: React.FC = ({ children }) => {
     } catch (e) {
       dispatch({ type: "REGISTER_FAILURE" });
     }
+  };
+
+  const logout = async () => {
+    // the API endpoint for logging out is /logout
   };
 
   useEffect(() => {

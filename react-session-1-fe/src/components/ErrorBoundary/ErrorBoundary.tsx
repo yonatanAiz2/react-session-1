@@ -29,7 +29,7 @@ class ErrorBoundary extends Component<Props, State> {
         <div>
           <h1>Sorry.. there was an error</h1>
           <Button
-            colorType="secondary"
+            variant="secondary"
             onClick={() => this.setState({ hasError: false })}
           >
             Reset error

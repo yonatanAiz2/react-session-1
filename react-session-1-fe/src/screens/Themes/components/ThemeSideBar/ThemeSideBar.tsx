@@ -49,7 +49,7 @@ const SideBarHeader = ({ selectedTheme }: Props) => {
         <Button onClick={() => selectedTheme && updateTheme(selectedTheme)}>
           save
         </Button>
-        <Button colorType="secondary" onClick={resetTheme}>
+        <Button variant="secondary" onClick={resetTheme}>
           Reset
         </Button>
       </div>

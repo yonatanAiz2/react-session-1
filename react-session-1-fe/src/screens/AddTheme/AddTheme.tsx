@@ -17,10 +17,10 @@ const AddTheme = () => {
     primary: "#fff",
   });
 
-  const handleColorChange = (color: string, colorType: string) => {
+  const handleColorChange = (color: string, variant: string) => {
     setColorsState((prev) => ({
       ...prev,
-      [colorType]: color,
+      [variant]: color,
     }));
   };
 
@@ -51,16 +51,16 @@ const AddTheme = () => {
         />
       </S.InputContainer>
       <S.ColorsContainer>
-        {colorsArr.map((colorType) => (
-          <div key={colorType}>
+        {colorsArr.map((variant) => (
+          <div key={variant}>
             <HexColorPicker
-              color={colorsState[colorType]}
-              onChange={(color) => handleColorChange(color, colorType)}
+              color={colorsState[variant]}
+              onChange={(color) => handleColorChange(color, variant)}
             />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h3>{colorType}</h3>
-              <h3 style={{ color: colorsState[colorType] }}>
-                {colorsState[colorType]}
+              <h3>{variant}</h3>
+              <h3 style={{ color: colorsState[variant] }}>
+                {colorsState[variant]}
               </h3>
             </div>
           </div>

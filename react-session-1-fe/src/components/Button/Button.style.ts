@@ -23,13 +23,29 @@ const secondary = css`
   }
 `;
 
-const buttonColorTypes = {
+const link = css`
+  background-color: transparent;
+  border: none;
+  border-radius: 0px !important;
+  border-bottom: 1px solid ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.primary};
+  transition: all 100ms;
+  :hover,
+  :focus {
+    filter: brightness(1.5);
+  }
+`;
+
+const buttonvariants = {
   primary,
   secondary,
+  link,
 };
 
-export const Button = styled.button<{ colorType: "primary" | "secondary" }>`
-  ${({ colorType }) => buttonColorTypes[colorType]}
+export const Button = styled.button<{
+  variant: "primary" | "secondary" | "link";
+}>`
+  ${({ variant }) => buttonvariants[variant]}
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
