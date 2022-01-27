@@ -1,4 +1,5 @@
 import Button from "../Button/Button";
+import { analyticsService } from "../../utils/analytics.service";
 import * as S from "./Dialog.style";
 
 interface Props {
@@ -8,20 +9,11 @@ interface Props {
 }
 
 const Dialog = ({ isOpen, onSubmit, onCancel }: Props) => {
-  if (!isOpen) return null;
-
+  // Please use the analyticsService to log when the modal is opened and when its closed
+  // Maybe also pass a prop from outside to specify the eventId
   return (
     <S.Dialog role="dialog">
-      <S.DialogInnerContainer>
-        <h2>Logout</h2>
-        <p>Are you sure you want to logout?</p>
-        <S.DialogButtonContainer>
-          <Button onClick={onCancel} variant="secondary">
-            Cancel
-          </Button>
-          <Button onClick={onSubmit}>Submit</Button>
-        </S.DialogButtonContainer>
-      </S.DialogInnerContainer>
+      {/* Create here the dialog box, with Title (h2) message (p) and two buttons submit and cancel */}
     </S.Dialog>
   );
 };
