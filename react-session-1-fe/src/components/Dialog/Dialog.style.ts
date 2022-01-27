@@ -12,3 +12,5 @@ export const Dialog = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
   transform: translate(-50%, -50%);
 `;
+
+// For the dialog box, please use the background color of the current theme
