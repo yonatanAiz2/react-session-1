@@ -11,6 +11,8 @@ interface Props {
 const Dialog = ({ isOpen, onSubmit, onCancel }: Props) => {
   // Please use the analyticsService to log when the modal is opened and when its closed
   // Maybe also pass a prop from outside to specify the eventId
+  // different message when modal is opened and when its closed!
+
   return (
     <S.Dialog role="dialog">
       {/* Create here the dialog box, with Title (h2) message (p) and two buttons submit and cancel */}

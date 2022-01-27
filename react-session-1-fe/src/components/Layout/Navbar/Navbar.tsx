@@ -12,6 +12,7 @@ const Navbar = () => {
         <img src="/assets/logo.png" alt="logo" />
         <S.LinksContainer>
           <ul>
+            {/* Show the button only when isAuthenticated = true */}
             <li>
               <Button variant="link">logout</Button>
             </li>
