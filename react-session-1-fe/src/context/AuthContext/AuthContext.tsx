@@ -85,6 +85,7 @@ const AuthContextProvider: React.FC<{ initialState?: AuthState }> = ({
 
   const logout = async () => {
     // the API endpoint for logging out is /logout
+    // dont forget to clean the session and update the state
   };
 
   useEffect(() => {

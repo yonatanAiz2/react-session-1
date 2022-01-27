@@ -43,7 +43,7 @@ const Navbar = () => {
           </Link>
         </S.LinksContainer>
       </S.Navbar>
-      <Dialog isOpen={false} onSubmit={() => {}} onCancel={() => {}} />
+      {/* Connect the Dialog component */}
     </>
   );
 };
